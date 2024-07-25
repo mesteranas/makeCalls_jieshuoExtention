@@ -1,4 +1,6 @@
 require "import"
+import "android.net.Uri"
+import "android.content.Intent"
 import "android.widget.*"
 import "android.view.*"
 name="call maker"
@@ -15,7 +17,7 @@ layout={
         text="call";
         onClick=function ()
             if phoneNumber.getText().toString()~="" then
-                service.call(phoneNumber.getText().toString())
+                this.startActivity(Intent(Intent.ACTION_CALL,Uri.parse("tel:" .. phoneNumber.getText().toString())))
                 service.speak("calling ...")
             else
                 service.speak("please type phone number")
